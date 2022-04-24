@@ -1,0 +1,49 @@
+.heading{
+  font-size: 2em;
+  font-weight: bold;
+  color: brown;
+  text-align: center;
+  padding: 30px 0;
+}
+.heading1{
+  font-size: 1.8em;
+  font-weight: bold;
+  color: brown;
+margin-left: 35px;
+margin-top: 5px;
+
+
+}
+.container{
+  width:14%;
+  height:50px;
+  border:2px solid brown;
+  margin-left:650px;
+display:flex;
+border-radius:10px;
+}
+.btn{
+  width:200px;
+  height:50px;
+  text-align: center;
+  font-size: 16px;
+ border: 10px;
+  border-right:1px solid brown;
+border-radius: 10px;
+}
+.btn1{
+  width:200px; 
+  height:50px;
+  text-align: center;
+  font-size: 16px;
+  margin-left: 30px;
+  border: transparent;
+border-left:1px solid red;
+background: brown;
+border-radius:5px;
+color:#fff;
+}
+.count{
+  margin-left: 650px;
+  font-size:15px;
+}
