@@ -1,97 +1,88 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react"
 
-const url = `https://black-history-month-api.herokuapp.com/people`;
+const url = `https://black-history-month-api.herokuapp.com/people`
 
-function App() {
-  const [people, setPeople] = useState([]);
-  const [filtered, setFiltered] = useState([]);
-  const [searchInput, setSearchInput] = useState("");
-  const [isLoading, setIsLoading] = useState(true);
+export default function App() {
+  const [people, setPeople] = useState([])
+  const [filtered, setFiltered] = useState([])
+  const [searchInput, setSearchInput] = useState("")
 
   const fetchPeople = async () => {
-    const res = await fetch(url);
-    const data = await res.json();
-    setPeople(data);
-    setIsLoading(false)
-  };
+    const res = await fetch(url)
+    const data = await res.json()
+    setPeople(data)
+  }
 
   useEffect(() => {
-    fetchPeople();
-  }, []);
+    fetchPeople()
+  })
 
   const searchPeople = (searchValue) => {
-    setSearchInput(searchValue);
+    setSearchInput(searchValue)
 
     if (searchInput) {
-      const filterdSearch = people.filter((people) =>
-        Object.values(person)
+      const filteredSearch = people.filter((user) =>
+        Object.values(user)
           .join("")
           .toLowerCase()
           .includes(searchValue.toLowerCase())
-      );
-      setFiltered(filterdSearch);
+      )
+      setFiltered(filteredSearch)
     } else {
-      setFiltered(people);
+      setFiltered(people)
     }
-  };
+  }
 
   return (
-    <>
-      {isLoading ? (
-        <h1 className="text-white uppercase font-bold
-         text-2xl md:text-4xl lg:text-6xl text-center mb-10 flex items-center justify-center h-screen">
-          Loading...
-        </h1>
-      ) : (
-        <div className="my-10">
-          <h1 className="text-white uppercase font-bold text-2xl md:text-4xl lg:text-6xl text-center mb-10">
-            Search Input Filter
-          </h1>
-          <input
-            type="text"
-            name="text"
-            id="text"
-            placeholder="Search..."
-            onChange={(e) => searchPeople(e.target.value)}
-            autoComplete="off"
-            className="w-1/2 block mx-auto py-2 px-5 rounded shadow mb-10"
-          />
+    <div className="flex flex-col justify-center p-5 md:max-w-2xl md:mx-auto lg:max-w-5xl">
+      <h1 className="text-white font-bold uppercase mt-10 mb-5 text-xl md:text-2xl lg:text-4xl xl:text-6xl text-center lg:mb-20">
+        ReactJs Search Input Filter
+      </h1>
+      <input
+        type="text"
+        name="text"
+        id="text"
+        placeholder="Search..."
+        autoComplete="off"
+        className="shadow w-full py-2 px-6 rounded"
+        onChange={(e) => searchPeople(e.target.value)}
+      />
 
-          {searchInput.length > 1 ? (
-            <section className="px-5 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 xl:max-w-5xl xl:mx-auto">
-              {filtered.map(({ id, name, image, dob }) => (
-                <article key={id} className="bg-yellow-300 p-5 rounded shadow">
-                  <img
-                    src={image}
-                    alt={name}
-                    title={name}
-                    className="h-96 w-full"
-                  />
-                  <h3 className="font-bold text-xl mt-1">{name}</h3>
-                  <p>DOB: {dob}</p>
-                </article>
-              ))}
-            </section>
-          ) : (
-            <section className="px-5 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 xl:max-w-5xl xl:mx-auto">
-              {people.map(({ id, name, image, dob }) => (
-                <article key={id} className="bg-yellow-300 p-5 rounded shadow">
-                  <img
-                    src={image}
-                    alt={name}
-                    title={name}
-                    className="h-96 w-full"
-                  />
-                  <h3 className="font-bold text-xl mt-1">{name}</h3>
-                  <p>DOB: {dob}</p>
-                </article>
-              ))}
-            </section>
-          )}
-        </div>
-      )}
-    </>
-  );
+      <section className="bg-pink-100 shadow rounded mt-10 grid grid-cols-1 p-5 text-gray-900 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {searchInput.length > 1
+          ? filtered.map(({ id, image, name, knownFor }) => (
+              <article
+                key={id}
+                className="bg-pink-300 py-2 px-5 rounded shadow"
+              >
+                <img
+                  src={image}
+                  alt={name}
+                  title={name}
+                  className="w-full h-96 rounded-t shadow mr-3"
+                />
+                <h3 className="text-xl">{name}</h3>
+                <p className="mb-3">{knownFor}</p>
+              </article>
+            ))
+          : people.map(({ id, image, name, knownFor }) => (
+              <article
+                key={id}
+                className="bg-pink-300 py-2 px-5 rounded shadow"
+              >
+                <img
+                  src={image}
+                  alt={name}
+                  title={name}
+                  className="w-full h-96 rounded-t shadow mr-3"
+                />
+                <div>
+                  <h3 className="text-xl">{name}</h3>
+                  <p className="mb-3">{knownFor}</p>
+                </div>
+              </article>
+            ))}
+      </section>
+    </div>
+  )
 }
-
-export default App;
