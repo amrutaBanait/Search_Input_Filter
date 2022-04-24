@@ -44,6 +44,7 @@ function App() {
           placeholder="Search..."
           onChange={(e) => searchPeople(e.target.value)}
           autoComplete="off"
+          className="w-1/2 block"
         />
 
         <section className="px-5 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 xl:max-w-5xl xl:mx-auto">
