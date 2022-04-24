@@ -53,7 +53,7 @@ export default function App() {
           ? filtered.map(({ id, image, name, knownFor }) => (
               <article
                 key={id}
-                className="bg-pink-300 py-2 px-5 rounded shadow"
+                className="bg-yellow-300 py-2 px-5 rounded shadow"
               >
                 <img
                   src={image}
@@ -65,20 +65,22 @@ export default function App() {
                 <p className="mb-3">{knownFor}</p>
               </article>
             ))
-          : people.map(({ id, image, name, knownFor }) => (
+          : people.map(({ id, image, name, knownFor ,dob}) => (
               <article
                 key={id}
-                className="bg-pink-300 py-2 px-5 rounded shadow"
+                className="bg-yellow-300 py-2 px-5 rounded shadow"
               >
                 <img
                   src={image}
                   alt={name}
                   title={name}
+                  DOB={dob}
                   className="w-full h-96 rounded-t shadow mr-3"
                 />
                 <div>
                   <h3 className="text-xl">{name}</h3>
                   <p className="mb-3">{knownFor}</p>
+                  <h3 className="text-xl">{dob}</h3>
                 </div>
               </article>
             ))}
