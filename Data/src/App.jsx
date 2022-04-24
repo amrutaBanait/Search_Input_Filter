@@ -37,6 +37,7 @@ function App() {
   return (
     <>
       <div className="my-10">
+        <h1 className="text-white uppercase font-bold text-2xl md:text-4xl lg:text-6xl text-center mb-10">Search Input Filter</h1>
         <input
           type="text"
           name="text"
